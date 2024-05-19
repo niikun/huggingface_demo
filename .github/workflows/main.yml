@@ -1,4 +1,3 @@
-name: CI
 on:
   push:
     branches: [main]
@@ -10,19 +9,16 @@ on:
 
 jobs:
   sync-to-hub:
-    build:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v2
-          with:
-            fetch-depth: 0
-        - name: Add remote 
-          env:
-            HF: ${{ secrets.HuggingFace }}
-          run: git remote add space https://niikun:$HuggingFace@https://huggingface.co/spaces/niikun/demo
-        - name: Push to hub
-          env:
-            HF: ${{ secrets.HuggingFace }}
-          run: git push --force https://niikun:$HuggingFace@https://huggingface.co/spaces/niikun/demo main
-
-          
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Add remote 
+        env:
+          HF: ${{ secrets.HuggingFace }}
+        run: git remote add space https://niikun:$HF@huggingface.co/spaces/niikun/demo
+      - name: Push to hub
+        env:
+          HF: ${{ secrets.HuggingFace }}
+        run: git push --force https://niikun:$HF@huggingface.co/spaces/niikun/demo main
