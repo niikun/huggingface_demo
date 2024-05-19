@@ -2,3 +2,7 @@ pytest
 pytest -conv
 pylint
 black
+gradio
+transformers
+tensorflow
+tf-keras
